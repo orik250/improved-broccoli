@@ -8,44 +8,18 @@ public class Main {
         //TIP Press <shortcut actionId="ShowIntentionActions"/> with your caret at the highlighted text
         // to see how IntelliJ IDEA suggests fixing it.
         ArrayList<String> lines = getFileData("src/data");
-        int counter = 0;
-        int position = 50;
-        String multiplier;
-        int multi;
-        for (int i = 0; i < lines.size(); i++) {
-            multiplier = lines.get(i);
-            multi = Integer.parseInt(multiplier.substring(1));
-            for (int a=0; a<multi; a++){
-                position = rotater(multiplier, position);
-                if(position==0){
-                    counter++;
-                }
-            }
-
-        }
-
-        System.out.println("Lands at zero: "+counter+" times");
+        String invalidIDs = lines.get(0);
+        System.out.println(invalidIDs);
+        getRanges(invalidIDs);
     }
-
-    public static int rotater(String rotation, int dial){
-        if((rotation.substring(0, 1).equals("L"))){
-            dial--;
-            if(dial==-1){
-                dial=99;
-
-            }
-        }else{
-            dial++;
-            if(dial==100){
-                dial=0;
-
-            }
+    public static void getRanges(String input){
+        while(input.indexOf(",")!=-1){
+            int idx = input.indexOf(",");
+            System.out.println(input.substring(0, idx));
+            input = input.substring(idx);
+            System.out.println(input);
         }
-
-        return dial;
-
     }
-
 
 
     public static ArrayList<String> getFileData(String fileName) {
