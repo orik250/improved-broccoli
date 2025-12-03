@@ -7,32 +7,27 @@ public class Main {
     public static void main(String[] args) {
         //TIP Press <shortcut actionId="ShowIntentionActions"/> with your caret at the highlighted text
         // to see how IntelliJ IDEA suggests fixing it.
-        ArrayList<String> lines = getFileData("data");
+        ArrayList<String> lines = getFileData("src/data");
         int counter = 0;
-        int partOneAnswer = 50;
-        int partTwoAnswer = 0;
-        String multiplier = "0";
-        int multi = 0;
+        int position = 50;
+        String multiplier;
+        int multi;
         for (int i = 0; i < lines.size(); i++) {
             multiplier = lines.get(i);
             multi = Integer.parseInt(multiplier.substring(1));
-            for (int i=0; i<multi; i++){
-                rotater(multiplier, partOneAnswer);
-
+            for (int a=0; a<multi; a++){
+                position = rotater(multiplier, position);
+                if(position==0){
+                    counter++;
+                }
             }
 
         }
 
-        System.out.println("Part one answer: " + partOneAnswer);
-        System.out.println("Part two answer: " + partTwoAnswer);
+        System.out.println("Lands at zero: "+counter+" times");
     }
 
-
-    ArrayList<String> combos = getFileData("data");
     public static int rotater(String rotation, int dial){
-
-        int count =0;
-        int num = Integer.parseInt(rotation.substring(1));
         if((rotation.substring(0, 1).equals("L"))){
             dial--;
             if(dial==-1){
@@ -51,13 +46,10 @@ public class Main {
 
     }
 
-    public static int getPartTwoNumber(String line) {
-        // do part 2
-        return 0;
-    }
+
 
     public static ArrayList<String> getFileData(String fileName) {
-        ArrayList<String> fileData = new ArrayList<String>();
+        ArrayList<String> fileData = new ArrayList<>();
         try {
             File f = new File(fileName);
             Scanner s = new Scanner(f);
